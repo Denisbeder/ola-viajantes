@@ -10,23 +10,32 @@
 
     <div class="collapse navbar-collapse" id="navbarsExample07">
     @include('site._nav')
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav navbar-menu mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
+          <a class="nav-link" href="#">Promoções</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-expanded="false">Dropdown</a>
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-expanded="false">Notícias</a>
           <div class="dropdown-menu" aria-labelledby="dropdown07">
             <a class="dropdown-item" href="#">Action</a>
             <a class="dropdown-item" href="#">Another action</a>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Guia de destinos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Hotéis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Passagens aéres</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contato</a>
         </li>
       </ul>
 
