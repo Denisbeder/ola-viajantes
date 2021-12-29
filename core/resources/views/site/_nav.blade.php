@@ -1,1 +1,1 @@
-{!! app('menuRenderService')->setClassNav('navbar-nav justify-content-around w-100')->render('header') !!}
+{!! app('menuRenderService')->setClassNav('navbar-nav navbar-menu mr-auto')->render('header') !!}

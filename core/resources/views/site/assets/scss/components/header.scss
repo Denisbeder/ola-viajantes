@@ -3,9 +3,15 @@
     position: relative;
 
     .navbar {
-        padding: 0;
+        padding-top: 0;
+        padding-bottom: 0;
         display: flex;
         align-items: center;
+
+        @include media-breakpoint-down(md) {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
     }
 }
 
@@ -22,11 +28,8 @@
     z-index: 10;
     width: auto;
     transition: right 0.2s ease-in-out;
-
-    @include media-breakpoint-down(md) {
-        width: 0px;
-        right: -0.5rem;
-    }
+    min-width: 40px;
+    z-index: 999;
 
     .form-control {
         transition: background-color 0.5s, opacity 0.5s, width 0.5s;
@@ -40,7 +43,7 @@
         position: absolute;
         border: none;
         color: transparent;
-        box-shadow: 0 0 0 0px rgba($color-3, 0.5);
+        box-shadow: 0 0 0 1px $color-3;
 
         &::selection {
             background-color: transparent;
@@ -102,39 +105,38 @@
     left: 50%;
     transform: translateX(-50%);
     content: "";
-    height: 4px;
+    height: 3px;
     width: 20px;
     background-color: $color-1;
     border-radius: 1000px;
 }
 
+.navbar-toggler {
+    background-color: $color-1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 1000px;
+
+    i {
+        color: $color-3;
+        font-size: 18px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
 .navbar-menu {
     padding: 0 1rem;
     min-height: 100px;
-    max-height: 100px;
     display: flex;
     align-items: center;
-
-    .navbar-toggler {
-        background-color: $color-1;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        width: 45px;
-        height: 45px;
-        border-radius: 1000px;
-        color: $white;
-
-        #icon-open-menu, #icon-close-menu {
-            display: none;
-        }
-
-        &:focus {
-            outline: none;
-        }
-    }
 
     .nav-item {
         &.active {
@@ -146,37 +148,13 @@
             }
         }
 
-        /* &.show {
-            background-color: $white;
-            border-top-left-radius: $border-radius;
-            border-top-right-radius: $border-radius;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            box-shadow: 0 0 0 3px rgba(darken($color-1, 20%), 0.25);
-
-            .nav-link {
-                background-color: inherit;
-                border-color: transparent !important;
-                border-bottom-color: $white !important;
-
-                &:hover {
-                    border-color: inherit;
-                    background-color: inherit;
-                    border-top-left-radius: inherit;
-                    border-top-right-radius: inherit;
-                    border-bottom-left-radius: inherit;
-                    border-bottom-right-radius: inherit;
-                }
-            }
-        } */
-
         .nav-link {
             font-weight: bold;
             color: $white;
             transition: $transition-href;
             text-transform: uppercase;
             font-size: 13.5px;
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 1rem;
             border-radius: inherit;
             position: relative;
             z-index: $zindex-dropdown + 1;
@@ -216,11 +194,10 @@
         top: 45%;
         z-index: $zindex-dropdown;
         pointer-events: none;
-        margin: 0;
+        margin: 0 0 0 calc(1rem + 3px);
         overflow: hidden;
-        border-radius: $border-radius-sm;
-        border-top-left-radius: 0;
-        box-shadow: 0 0 0 3px rgba(darken($color-1, 20%), 0.25);
+        border-top-left-radius: 2px;
+        box-shadow: 0 0 0 3px $color-1;
 
         &.show {
             top: 98.3333%;
@@ -232,24 +209,30 @@
 }
 
 .nav-social {
-    [class*="whatsapp"] {
-        color: $whatsapp-color;
+    i {
+        color: $white;
     }
 
-    [class*="facebook"] {
-        color: $facebook-color;
-    }
+    @include media-breakpoint-down(md) {
+        [class*="whatsapp"] {
+            color: $whatsapp-color;
+        }
 
-    [class*="instagram"] {
-        color: $instagram-color;
-    }
+        [class*="facebook"] {
+            color: $facebook-color;
+        }
 
-    [class*="twitter"] {
-        color: $twitter-color;
-    }
+        [class*="instagram"] {
+            color: $instagram-color;
+        }
 
-    [class*="youtube"] {
-        color: $youtube-color;
+        [class*="twitter"] {
+            color: $twitter-color;
+        }
+
+        [class*="youtube"] {
+            color: $youtube-color;
+        }
     }
 
     .nav-link {
@@ -273,6 +256,7 @@
         font-size: 20px;
         margin-right: -#{($spacer / 2) + 0.5rem};
         box-shadow: none !important;
+        color: $white;
 
         &:focus {
             color: $color-1;

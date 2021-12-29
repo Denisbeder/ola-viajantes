@@ -6,7 +6,6 @@ import 'bootstrap/js/dist/collapse';
 import './vendor/configs';
 import './vendor/lazy';
 import './vendor/search'; 
-import './vendor/menu'; 
 import './vendor/banners'; 
 import './vendor/poll';
 import './vendor/carousels';
