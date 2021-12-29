@@ -1,0 +1,77 @@
+.footer {
+    background-color: lighten($light, 1%);
+    padding: 60px 0 0 0;
+    color: $gray-500;
+
+    a {
+        color: inherit;
+        &:hover {
+            color: $gray-700;
+        }
+    }
+
+    .footer-logo {
+        opacity: .3;
+    }
+
+    .footer-copyright {
+        padding: 2.5rem 0;
+        margin-top: 60px;
+        font-size: 14px;
+        border-top-color: $gray-300 !important;
+        border-top-width: 1px !important;
+        min-width: 100%;
+    }
+
+    .footer-social {
+        .nav-item:not(:last-child) {
+            margin-right: 0.5rem;
+        }
+
+        .nav-link {
+            border: 1px solid $gray-500;
+            border-radius: 1000px;
+            padding: 0;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            transition: $transition-href;
+
+            &:hover {
+                border-color: $link-hover-color;
+                background-color: $link-hover-color;
+                color: lighten($link-hover-color, 50%);
+            }
+
+            &.facebook:hover {
+                border-color: $facebook-color;
+                background-color: $facebook-color;
+                color: #fff;
+            }
+
+            &.youtube:hover {
+                border-color: $youtube-color;
+                background-color: $youtube-color;
+                color: #fff;
+            }
+
+            &.twitter:hover {
+                border-color: $twitter-color;
+                background-color: $twitter-color;
+                color: #fff;
+            }
+
+            &.instagram:hover {
+                border-color: $instagram-color;
+                background-color: $instagram-color;
+                color: #fff;
+            }
+
+            &.whatsapp:hover {
+                border-color: $whatsapp-color;
+                background-color: $whatsapp-color;
+                color: #fff;
+            }
+        }
+    }
+}

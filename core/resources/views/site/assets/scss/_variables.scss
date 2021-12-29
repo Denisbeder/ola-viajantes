@@ -1,0 +1,21 @@
+$facebook-color: #3b5998;
+$twitter-color: #00aced;
+$linkedin-color: #0e76a8;
+$youtube-color: #bb0000;
+$instagram-color: #993399;
+$whatsapp-color: #25d366;
+
+$color-1: #FFA300; 
+$color-1-ascent: #b97500; 
+$color-2: #ad3249; 
+$color-2-ascent: #944956; 
+$color-3: #173047; 
+$color-3-ascent: #091e31; 
+
+$link-color-default: #505052;
+$link-hover-color-default: $color-1;
+
+$transition-href: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+
+@import '_variables_bootstrap';
+@import '_variables_lightgallery';

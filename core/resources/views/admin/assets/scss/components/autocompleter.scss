@@ -1,0 +1,10 @@
+@import '~autocompleter/autocomplete.css';
+.autocomplete {
+    z-index: 2000;
+}
+.autocomplete > div:hover:not(.group),
+.autocomplete > div.selected {
+    background: $primary;
+    color: $white;
+    cursor: pointer;
+}

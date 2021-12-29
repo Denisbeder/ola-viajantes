@@ -1,0 +1,16 @@
+.comments-wrapper {
+    .comments-list {
+        .comments-list-item {
+            padding-top: 1.75rem;
+            padding-bottom: 1.75rem;
+            padding-left: 0;
+            padding-right: 0;
+
+            @include media-breakpoint-down(md) {
+                img {
+                    max-width: 50px;
+                }
+            }
+        }
+    }
+}

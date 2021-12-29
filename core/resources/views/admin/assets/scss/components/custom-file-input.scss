@@ -1,0 +1,81 @@
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    @extend .form-control;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+    max-width: fit-content;
+    margin-bottom: 0;
+    font-weight: lighter !important;
+}
+
+.inputfile.square + label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    min-width: 100px;
+    max-width: 100px;
+    width: 100px !important;
+    min-height: 100px;
+    max-height: 100px;
+    height: 100px !important;
+    border: dashed 1px $grey-500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    float: left;
+
+    span:nth-child(1), i {
+        font-size: 18px;
+    }
+
+    span:nth-child(2) {
+        margin-top: 5px;
+        font-size: 13px;
+    }
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label,
+.inputfile + label:hover {
+    color: $grey-700;
+}
+
+.inputfile-preview {
+    display: flex;
+    flex-wrap: wrap;
+
+    .inputfile-preview-item {
+        flex: 1 1 100px;
+        width: 100px;
+        max-width: 100px;
+        height: 100px;
+        max-height: 100px;
+        background-size: cover;
+        background-position: center;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        border-radius: 0.25rem;
+        overflow: hidden;
+        border: 1px solid $grey-500;
+    }
+}

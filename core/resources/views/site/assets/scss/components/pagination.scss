@@ -1,0 +1,61 @@
+.pagination {
+    margin-bottom: 0;
+    .page-item {
+        margin-right: 3px;
+        margin-left: 3px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.disabled[aria-label="« Anterior"],
+        &.disabled[aria-label="Próxima »"],
+        &.disabled[aria-label="« Previous"],
+        &.disabled[aria-label="Next »"] {
+            display: none;
+        }
+
+        .page-link {
+            border-radius: $border-radius;
+            border: none;
+            padding: 0;
+            min-width: 40px;
+            width: fit-content;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+
+            &:hover {
+                background-color: rgba($link-hover-color, 15%);
+            }
+
+            &[rel="prev"],
+            &[rel="next"] {
+                font-size: 0px;
+                width: auto;
+                padding-right: 1.25rem;
+                padding-left: 1.25rem;
+                border: 1px solid $gray-300;
+
+                &:hover {
+                    border-color: transparent;
+                }
+
+                &:before {
+                    display: block;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                }
+            }
+
+            &[rel="prev"]:before {
+                content: "Anterior";
+            }
+
+            &[rel="next"]:before {
+                content: "Próxima";
+            }
+        }
+    }
+}

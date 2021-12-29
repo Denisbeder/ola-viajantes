@@ -1,0 +1,37 @@
+.tooltip {
+    .arrow {
+        color: transparent;
+        &:before,
+        &:after {
+            position: absolute;
+            content: "";
+            border-style: solid;
+            width: 0; 
+            height: 0;
+            border-width: 0.4rem 0.4rem 0;
+        }
+
+        &:before {
+            top: -1px;
+            border-top-color: $white;
+            z-index: 1;
+        }
+
+        &:after {
+            top: 0;
+            border-top-color: $grey-400;
+            z-index: 0;
+        }
+    }
+
+    .tooltip-inner {
+        background-color: $white;
+        color: $grey-700;
+        border: 1px solid $grey-400;
+        font-size: 13px;
+        text-align: justify;
+        line-height: 1.275;
+        padding: 10px 15px;
+        box-shadow: 1px 0 20px rgba($dark, .3);
+    }
+}

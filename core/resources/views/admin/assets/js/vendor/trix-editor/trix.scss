@@ -1,0 +1,11 @@
+trix-toolbar {
+    .trix-button {
+        border-bottom: none;
+    }
+
+    .trix-button--icon-custom {
+        > * {
+            font-size: 20px;
+        }
+    }
+}

@@ -1,0 +1,1 @@
+<a href="/support/clearcache/{{ urlencode($model) ?? null }}" class="btn bg-white border"><i class="ti-trash"></i> Limpar cache</a>

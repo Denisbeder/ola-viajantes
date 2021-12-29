@@ -1,0 +1,192 @@
+@import "variables";
+@import "mixins";
+@import "~bootstrap/scss/bootstrap";
+@import "components";
+@import "base";
+@import "helpers";
+
+.border, .dropdown-menu {
+    border-color: $border-color !important;
+}
+
+.header .header-container .nav-left .notifications .counter,
+.header .header-container .nav-right .notifications .counter {
+    z-index: 1;
+}
+
+.header .header-container .nav-left {
+    margin-left: 0;
+}
+
+[class*=" ti-"],
+[class^="ti-"] {
+    position: relative;
+    bottom: -1px;
+    z-index: 0;
+}
+
+.logo-text {
+    font-variant: small-caps;
+}
+
+.sidebar-menu .sidebar-link.active {
+    background-color: $inverse-primary;
+}
+
+.medias-item, .medias-sortable .ui-sortable-placeholder {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    border: 1px solid $grey-500;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.medias-item {
+    a:not(.medias-item-caption) {
+        display: block;
+    }
+
+    .medias-item-cover {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 12px;
+        color: $white;
+        background-color: rgba($dark, .7);
+    }
+
+    .medias-item-trash,
+    .medias-item-caption {
+        font-size: 18px;
+        padding: 3px;
+        position: absolute;
+        top: 0;
+        bottom: auto;
+        visibility: hidden;
+        opacity: 0;
+        cursor: pointer;
+        transition: 0.5s;
+        background-color: rgba(255, 255, 255, 0.9);            
+        z-index: 2;
+    }
+
+    .medias-item-trash {
+        right: 0;
+        color: $red;
+    }
+
+    .medias-item-caption {
+        color: $blue;
+        left: 0;
+    }
+
+    &:hover {
+        .medias-item-trash,
+        .medias-item-caption {            
+            display: inline-block;
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+
+// Editor 
+.ce-block__content, .ce-toolbar__content {
+    max-width: 100%;
+}
+
+.ce-toolbar__actions, .codex-editor--narrow .ce-toolbar__actions {
+    right: 10px;
+}
+
+.codex-editor__redactor, .codex-editor--narrow .codex-editor__redactor {
+    margin-right: 35px;
+}
+
+.ce-toolbar__plus {
+    background-color: #fff;
+    border: 1px solid $border-color;
+    border-right: none;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    left: -42px !important;
+    top: 1px;
+    height: 36px;
+}
+
+.ce-toolbox {
+    margin-top: 1px;
+    border: 1px solid $border-color;
+    border-left: none;
+    left: -10px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.sticky-aside {
+    position: sticky;
+    top: 85px;
+    z-index: 2;
+}
+
+.bg-white.active {
+    background-color: $primary !important;
+    color: $white !important;
+}
+
+.alert-messages > .alert {
+    margin-top: -20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    border-radius: 0;
+    border: none;
+}
+
+.highlight-positions {
+    margin: -5px;
+    .highlight-positions-item {
+        width: 90px;
+        height: 90px;
+        margin: 2.5px;
+        border-radius: 0;
+        cursor: pointer;
+        font-size: 12px;
+
+        input {
+            display: none;
+        }
+
+        &.active {
+            background-color: $primary;
+            color: $white;
+        }
+    }
+}
+
+.mfp-hide {
+    position: relative;
+    top: -100vw;
+    left: -100vh;
+}
+
+.card-listings {
+    border-left: 4px solid $primary;
+    transition: .5s;
+    
+    &:hover {
+        border-color: $primary;
+
+        .card-header {
+            transition: .5s;
+            background-color: lighten($primary, 46%) !important;
+            color: $primary !important;
+        }
+    }
+}
