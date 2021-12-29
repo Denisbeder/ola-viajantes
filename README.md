@@ -1,5 +1,5 @@
 <p align="center"><a href="https://olaviajantes.com.br" target="_blank">
-<img src="https://github.com/Denisbeder/ola-viajantes/blob/master/core/resources/views/site/assets/img/logo-color.png" width="200"></a></p>
+<img src="https://raw.githubusercontent.com/Denisbeder/ola-viajantes/main/core/resources/views/site/assets/img/logo-color.png" width="200"></a></p>
 
 ## Sobre o site
 
