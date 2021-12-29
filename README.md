@@ -1,12 +1,9 @@
-<p align="center"><a href="https://revistadagente.com.br" target="_blank">
-<img src="https://github.com/Denisbeder/revistadagente/blob/master/core/resources/views/site/assets/img/logo-color.png" width="200"></a></p>
+<p align="center"><a href="https://olaviajantes.com.br" target="_blank">
+<img src="https://github.com/Denisbeder/ola-viajantes/blob/master/core/resources/views/site/assets/img/logo-color.png" width="200"></a></p>
 
-## Sobre a Revista DaGente
+## Sobre o site
 
-O site revistadagente.com.br é um site de notícias local.
-
-#### Slogan
-Revista DaGente. A revista que é minha, sua, nossa, é DaGente!
+O site olaviajantes.com.br é um site de dicas de viagens.
 
 ## License
 
