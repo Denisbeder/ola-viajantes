@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Supports\Services\EditorJsService;
 
 class PostsSeeder extends Seeder
@@ -16,8 +17,11 @@ class PostsSeeder extends Seeder
       {
             DB::disableQueryLog();
 
-            /* DB::table('posts')->where('page_id', 1)->delete();
-            DB::unprepared("ALTER TABLE posts AUTO_INCREMENT = 1;"); */
+            DB::table('posts')->where('page_id', 1)->delete();
+            DB::unprepared("ALTER TABLE posts AUTO_INCREMENT = 1;");
+            DB::table('media')->where('model_type', 'App\\Post')->delete();
+            DB::table('highlights')->where('highlightable_type', 'App\\Post')->delete();
+            Storage::deleteDirectory('public/posts');
             
             $page = Page::firstOrCreate(['slug' => 'noticias'], ['publish' => 1, 'title' => 'Notícias', 'slug' => 'noticias', 'manager' => ['type' => 'App\Post']]);
             
@@ -27,6 +31,8 @@ class PostsSeeder extends Seeder
                   $this->command->info('Inserindo: ' . $data['title']);
 
                   $save = Post::create(Arr::except($data, 'img'));
+
+                  $save->highlight()->create(['position' => rand(1, 8)]);
 
                   if ((bool) strlen($data['img'])) {
                         try {
