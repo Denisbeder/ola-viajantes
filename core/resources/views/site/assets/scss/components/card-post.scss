@@ -115,7 +115,7 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        @extend .rounded;
+        @extend .rounded-sm;
         @extend .py-1;
         @extend .px-3;
     }
