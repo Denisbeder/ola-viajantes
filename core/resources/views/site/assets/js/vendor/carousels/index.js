@@ -28,27 +28,47 @@ $("#hightlights-carousel").owlCarousel({
     lazyLoad: true
 });
 
-$(".advert-gallery-carousel").owlCarousel({
+// $(".advert-gallery-carousel").owlCarousel({
+//     margin: 15,
+//     nav: false,
+//     navText: navIcons,
+//     dots: true,
+//     items: 1,
+//     loop: true
+//     /* autoplay: true,
+//         autoplayTimeout: 3000,
+//         autoplayHoverPause: true */
+// });
+
+// $("#advert-carousel").owlCarousel({
+//     margin: 15,
+//     nav: false,
+//     navText: navIcons,
+//     dots: true,
+
+//     loop: false,
+//     lazyLoad: false,
+//     autoplay: true,
+//     autoplayTimeout: 3000,
+//     autoplayHoverPause: true,
+//     responsive: {
+//         0: {
+//             items: 2
+//         },
+//         768: {
+//             items: 5
+//         }
+//     }
+// });
+
+const mostviewsCarousel = $("#mostviews-carousel").owlCarousel({
     margin: 15,
     nav: false,
-    navText: navIcons,
-    dots: true,
-    items: 1,
-    loop: true
-    /* autoplay: true,
-        autoplayTimeout: 3000,
-        autoplayHoverPause: true */
-});
-
-$("#advert-carousel").owlCarousel({
-    margin: 15,
-    nav: false,
-    navText: navIcons,
-    dots: true,
-
-    loop: false,
+    dots: false,
+    center: true,
+    loop: true,
     lazyLoad: false,
-    autoplay: true,
+    autoplay: false,
     autoplayTimeout: 3000,
     autoplayHoverPause: true,
     responsive: {
@@ -59,4 +79,13 @@ $("#advert-carousel").owlCarousel({
             items: 5
         }
     }
+});
+
+
+$('#mostviews-carousel-prev').click(function() {
+    mostviewsCarousel.trigger('prev.owl.carousel');
+});
+
+$('#mostviews-carousel-next').click(function() {
+    mostviewsCarousel.trigger('next.owl.carousel');
 });

@@ -89,72 +89,6 @@
 </li>
 @endcan
 
-{{-- <li class="nav-item">
-    <a class="sidebar-link" href="/admin/posts">
-        <span class="icon-holder">
-            <i class="c-green-500 ti-write"></i>
-        </span>
-        <span class="title">Posts</span>
-    </a>
-</li>
-<li class="nav-item">
-    <a class="sidebar-link" href="/admin/videos">
-        <span class="icon-holder">
-            <i class="c-red-500 ti-video-camera"></i>
-        </span>
-        <span class="title">Vídeos</span>
-    </a>
-</li>
-<li class="nav-item">
-    <a class="sidebar-link" href="/admin/galleries">
-        <span class="icon-holder">
-            <i class="c-blue-500 ti-gallery"></i>
-        </span>
-        <span class="title">Galerias</span>
-    </a>
-</li>
-<li class="nav-item">
-    <a class="sidebar-link" href="/admin/listings">
-        <span class="icon-holder">
-            <i class="c-green-500 ti-layout-list-thumb"></i>
-        </span>
-        <span class="title">Listas</span>
-    </a>
-</li>
-<li class="nav-item">
-    <a class="sidebar-link" href="/admin/adverts">
-        <span class="icon-holder">
-            <i class="c-deep-orange-600 ti-announcement"></i>
-        </span>
-        <span class="title">Mural de anúncios</span>
-    </a>
-</li>
-<li class="nav-item">
-    <a class="sidebar-link" href="/admin/promotions">
-        <span class="icon-holder">
-            <i class="c-blue-grey-700 ti-gift"></i>
-        </span>
-        <span class="title">Promoções</span>
-    </a>
-</li>
-<li class="nav-item">
-    <a class="sidebar-link" href="/admin/forms">
-        <span class="icon-holder">
-            <i class="c-green-500 ti-layout-cta-btn-left"></i>
-        </span>
-        <span class="title">Formulários</span>
-    </a>
-</li> --}}
-
-{{-- <li class="nav-item">
-    <a class="sidebar-link" href="/admin/shop">
-        <span class="icon-holder">
-            <i class="c-deep-orange-600 ti-shopping-cart"></i>
-        </span>
-        <span class="title">Loja</span>
-    </a>
-</li> --}}
-
 @can('polls')
 <li class="nav-item">
     <a class="sidebar-link" href="/admin/polls">
@@ -173,6 +107,17 @@
             <i class="c-yellow-800 ti-comment"></i>
         </span>
         <span class="title">Comentários</span>
+    </a>
+</li>
+@endcan
+
+@can('destinations')
+<li class="nav-item">
+    <a class="sidebar-link" href="/admin/destinations">
+        <span class="icon-holder">
+            <i class="c-blue-500 ti-world"></i>
+        </span>
+        <span class="title">Destinos</span>
     </a>
 </li>
 @endcan

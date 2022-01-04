@@ -112,30 +112,43 @@
     }
 }
 
-#bar-carousel {
+// #bar-carousel {
+//     .owl-nav {
+//         position: absolute;
+//         top: 0;
+//         right: 0;
+//         bottom: 0;
+//         margin-top: 0;
+//         background-color: $white;
+
+//         .owl-prev, .owl-next {
+//             transition: $transition-base;
+//             margin: 0;
+//             height: 100%;
+//             width: 50px;
+//             border-left: 1px solid $border-color;
+//             border-right: 1px solid $border-color;
+
+//             &:hover {
+//                 background-color: $gray-100;
+//             }
+//         }
+
+//         .owl-prev {
+//             margin-right: -1px;
+//         }
+//     }
+// }
+
+#mostviews-carousel {
     .owl-nav {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        margin-top: 0;
-        background-color: $white;
+        font-size: 40px;
 
         .owl-prev, .owl-next {
             transition: $transition-base;
             margin: 0;
             height: 100%;
             width: 50px;
-            border-left: 1px solid $border-color;
-            border-right: 1px solid $border-color;
-
-            &:hover {
-                background-color: $gray-100;
-            }
-        }
-
-        .owl-prev {
-            margin-right: -1px;
         }
     }
 }

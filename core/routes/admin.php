@@ -65,6 +65,9 @@ Route::middleware(['auth'])
         // Pages
         Route::resource('pages', 'PagesController')->parameters(['pages' => 'id']);
 
+        // Destinations
+        Route::resource('destinations', 'DestinationsController')->parameters(['destinations' => 'id']);
+
         // Banners
         Route::resource('banners', 'BannersController')->parameters(['banners' => 'id'])->middleware('can:banners');
 

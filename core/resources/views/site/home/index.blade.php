@@ -213,4 +213,44 @@
             </div>
         </div>
     </div>
+
+    <div class="mt-5 position-relative container-fluid">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div>
+                <div class="box-title">Os mais visitados</div>
+                <small class="text-muted mb-4 d-block">Esses são os nossos posts mais famosos</small>
+            </div>
+
+            <div class="d-flex">
+                <button type="button" id="mostviews-carousel-prev" class="btn rounded-pill bg-light text-secondary p-0 d-flex justify-content-center align-items-center mr-2" style="width: 50px; height: 50px;"><i class="lni lni-arrow-left"></i></button>
+                <button type="button" id="mostviews-carousel-next" class="btn rounded-pill bg-light text-secondary p-0 d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;"><i class="lni lni-arrow-right"></i></button>
+            </div>
+        </div>
+        <div id="mostviews-carousel" class="owl-carousel">
+            @foreach ([1,2,3,4,5,6,7,8] as $postId)      
+                @foreach (${'postsP'.$postId} as $item)
+                <article class="card card-post d-flex">
+                    {!!
+                        $item->present()->imgFirst(
+                            $item->mediaCollection,
+                            [
+                                'width' => '424', 
+                                'height' => '210', 
+                                'fit' => 'crop', 
+                                'class' => 'img-fluid',
+                            ],
+                            null,
+                            null
+                        )
+                    !!}
+                    <a href="{{ $item->present()->url }}" title="{{ $item->title }}" class="card-img-overlay {{ !$item->hasMedia($item->mediaCollection) ? 'border' : null }}">
+                        @if((bool) strlen($subject = $item->present()->subject))<p class="card-subject">{{ $subject }}</p>@endif
+                        @if($item->getTable() === "videos")<span class="card-subject-video">ASSISTA</span>@endif
+                        <h1 class="card-title title-16 font-weight-normal">{{ $item->title_short ?? $item->title }}</h1>
+                    </a>
+                </article>
+                @endforeach
+            @endforeach
+        </div>
+    </div>
 @endsection

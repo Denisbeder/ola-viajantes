@@ -45,6 +45,7 @@
 }
 
 .show-title {
+    font-family: Prata;
     font-size: 50px;
     font-weight: bold !important;
 
@@ -73,27 +74,17 @@
     flex-direction: row;
     flex-wrap: wrap;
     overflow: hidden;
-    border-radius: $border-radius;
-    border: 1px solid $border-color;
+    margin: -1rem 0px;
 
     .show-share-item {
         transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
         width: 50%;
-        height: 40px;
-        border-top-width: 1px;
+        height: 40px;        
+        border: none;
         display: flex !important;
         align-items: center;
         justify-content: center;
-
-        &:first-child {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
-        > *:not(.lni-facebook-oval, .lni-whatsapp) {
-            position: relative;
-            bottom: -1px;
-        }
+        border-radius: 0 !important;
 
         &.facebook:hover {
             background-color: $facebook-color;
@@ -194,8 +185,10 @@
         flex-wrap: nowrap;
         border: none;
         border-radius: 0;
+        margin: unset;
 
         .show-share-item {
+            flex: 1;
             width: 100%;
             height: 50px;
             border: none;
@@ -354,12 +347,12 @@
         > .show-share-item {
             border: none;
             display: block;
-            width: 35px;
-            height: 35px;
+            width: 53px;
+            height: 53px;
             //font-size: 24px;
             padding: 0;
             margin-bottom: 0;
-            margin-left: 0.25rem;
+            //margin-left: 0.25rem;
 
             &:first-child {
                 margin-left: 0;

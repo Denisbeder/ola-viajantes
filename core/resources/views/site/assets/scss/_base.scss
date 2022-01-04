@@ -10,7 +10,7 @@ body {
 
 .section-title-page {
     background-color: $white;
-    color: lighten($dark, 35%);
+    color: $dark;
     border-bottom: 1px solid $border-color;
     padding-bottom: 1rem;
     display: flex;
@@ -19,28 +19,17 @@ body {
 
     span,
     h1 {
+        font-family: Prata;
         display: inline-block;
-        font-weight: bold;
         font-size: 20px;
         position: relative;
-        text-transform: uppercase;
+        font-weight: bold;
         margin-bottom: 0;
-
-        &:after {
-            height: 7px;
-            width: 100%;
-            content: "";
-            border-top-left-radius: $border-radius;
-            border-top-right-radius: $border-radius;
-            background-color: $border-color;
-            position: absolute;
-            top: calc(100% + 1rem - 7px);
-            left: 0;
-        }
     }
 
     .breadcrumb {
         font-size: 12.5px;
+        color: lighten($dark, 35%);
 
         .breadcrumb-item {
             padding-left: 0;
@@ -67,33 +56,15 @@ body {
 }
 
 .box-title {
+    font-family: Prata;
     display: flex;
     flex-direction: column;
-    font-weight: bold;
     width: fit-content;
-    text-transform: uppercase;
-    font-size: 14.5px;
-
-    &:before {
-        content: "";
-        display: block;
-        height: 8px;
-        width: 100%;
-        background-color: $color-1;
-        border-bottom-left-radius: $border-radius;
-        border-bottom-right-radius: $border-radius;
-        margin-bottom: 1rem;
-    }
+    font-size: 34px;
 
     &.center {
         margin: 0 auto;
         justify-content: center;
         text-align: center;
-    }
-
-    &.rounded {
-        &:before {
-            border-radius: $border-radius;
-        }
     }
 }
