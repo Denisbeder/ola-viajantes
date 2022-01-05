@@ -94,6 +94,13 @@
                 <div class="form-group mb-0">
                     {!! Form::cCheckbox('commentable', 'Permitir comentários', 1, !isset($record) ? true : null) !!}
                 </div>
+
+                @php $destinationsList = App\Destination::get(['id', 'title'])->pluck('title', 'id'); @endphp
+                @if($destinationsList->isNotEmpty())
+                <div class="mb-0 form-group">
+                    {!! Form::cSelect('destination_id', 'Atribuir destino', $destinationsList, isset($record) && isset($record->destinations) ? $record->destinations : null, ['class' => 'form-control select']) !!}
+                </div>
+                @endif
             </div>
         </div>
     </div>

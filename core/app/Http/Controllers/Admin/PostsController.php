@@ -26,7 +26,7 @@ class PostsController extends Controller
 
     protected function getDatas($page)
     {
-        return $this->model->with(['category', 'page', 'media', 'highlight'])->withCount('comments')->where('page_id', optional($page)->id);
+        return $this->model->with(['category', 'page', 'media', 'highlight', 'destinations'])->withCount('comments')->where('page_id', optional($page)->id);
     }
 
     /**
@@ -40,7 +40,6 @@ class PostsController extends Controller
 
         $records = $this->getDatas($page)
                         ->filter($request->all())
-                        ->with('highlight')
                         ->latest()
                         ->paginate();
                         
@@ -94,6 +93,11 @@ class PostsController extends Controller
             ->associate($request->user())
             ->save();
 
+        // Sincroniza destinos
+        if ($request->has('destination_id')) {
+            $data->destinations()->sync((array) $request->input('destination_id') ?? []);
+        }
+
         // Salva as imagens na pasta e no banco de dados
         $this->addMedia('images', $data, $data->title, 'images');
 
@@ -122,7 +126,7 @@ class PostsController extends Controller
     public function edit(int $id, Request $request)
     {
         $page = $this->getPage();
-        $record = $this->model->with('highlight', 'related')->find($id);
+        $record = $this->model->with('highlight', 'related', 'destinations')->find($id);
 
         if (is_null($record)) {
             return redirect()->route($this->className() . '.index')->withInfo(config('app.admin.messages.id_not_found'));
@@ -183,6 +187,9 @@ class PostsController extends Controller
                         ['seoable_type' => get_class($this->model), 'seoable_id' => $item->id],
                         $this->seoInputs($request)
                     );
+
+                    // Sincroniza destinos
+                    $item->destinations()->sync((array) $request->input('destination_id') ?? []);
 
                     // Sempre que atualizar remove todos os relacionados e adicona os novos mesm que sejam iguais
                     // Fazendo assim se algum ou todos forem removidos garante que isso aconteca

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Destination as Model;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Artisan;
 use App\Http\Requests\DestinationFormRequest as FormRequest;
 
 class DestinationsController extends Controller
@@ -14,35 +12,20 @@ class DestinationsController extends Controller
     public function __construct(Model $model)
     {
         parent::__construct();
-        
+
         $this->middleware('needs.not.page.selected');
-        
+
         $this->model = $model;
     }
-    
+
     /**
-     * Display a listing of the resource.
+     * Display a Destination of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {     
-        $this->authorize('destinations'); 
-        
-        $user = auth()->user();
-
-        $allowedPagesId = $this->extractIdPagesOfPermissionsPage($user->permissions['pages'] ?? []);
-
-        $records = $this->model
-            ->when(!$user->isSuperAdmin, function ($query) use ($allowedPagesId) {
-                return $query->whereIn('id', $allowedPagesId);
-            })
-            ->with('children', 'ancestors')
-            ->withDepth()
-            ->whereIsRoot()
-            ->defaultOrder()
-            ->paginate();
-
+    {
+        $records = $this->model->with('media')->withDepth()->latest()->paginate();
         return view('admin.destinations.index', compact('records'));
     }
 
@@ -53,10 +36,6 @@ class DestinationsController extends Controller
      */
     public function create()
     {
-        $this->authorize('destinations');
-
-        abort_if(!auth()->user()->isSuperAdmin, 403);
-
         return view('admin.destinations.form');
     }
 
@@ -68,12 +47,7 @@ class DestinationsController extends Controller
      */
     public function store(FormRequest $request)
     {
-        $this->authorize('destinations');
-
-        abort_if(!auth()->user()->isSuperAdmin, 403);
-
-        $data = $this->model
-            ->create($request->all());
+        $data = $this->model->create($request->input());
 
         $data->user()
             ->associate($request->user())
@@ -81,14 +55,6 @@ class DestinationsController extends Controller
 
         // Salva as imagens na pasta e no banco de dados
         $this->addMedia('images', $data, $data->title, 'images');
-        $this->addMedia('avatar', $data, $data->writer['name'] ?? null, 'avatar');
-
-        // Salva dados SEO 
-        $data->seo()->create($this->seoInputs($request));
-
-        $this->model->fixTree();
-
-        Artisan::call('route:cache');
 
         return $this->redirectRoute($request, $data->id);
     }
@@ -101,9 +67,7 @@ class DestinationsController extends Controller
      */
     public function show(int $id)
     {
-        $this->authorize('destinations');
-
-        $record = $this->model->find($id);
+        $record = $this->model->with('media')->find($id);
         return view('admin.destinations.show', compact('record'));
     }
 
@@ -114,16 +78,15 @@ class DestinationsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(int $id)
-    {                
-        $record = $this->model->find($id);
-
-        $this->authorize('edit', $record);
+    {
+        $page = $this->getPage();
+        $record = $this->model->with('media')->find($id);
 
         if (is_null($record)) {
             return redirect()->route($this->className() . '.index')->withInfo(config('app.admin.messages.id_not_found'));
         }
         
-        return view('admin.destinations.form', compact('record'));
+        return view('admin.destinations.form', compact('page', 'record'));
     }
 
     /**
@@ -140,33 +103,12 @@ class DestinationsController extends Controller
         $data = $this->model
             ->whereIn('id', $id)
             ->get()
-            ->each(function ($item) use ($request, &$id) {
-                // Verifica se tem autorização
-                $this->authorize('edit', $item);
+            ->each(function ($item) use ($request) {  
+                $item->fill($request->input())->save();
 
-                if ($request->has('duplicate')) {
-                    $duplicate = $item->replicate(['publish', 'user_id']);
-                    $duplicate->user_id = $request->user()->id;
-                    $duplicate->save();
-                    $id[] = $duplicate->id;
-                } else {
-                    $item->fill($request->input())->save();
-
-                    // Salva as imagens na pasta e no banco de dados
-                    $this->addMedia('images', $item, $item->title, 'images');
-                    $this->addMedia('avatar', $item, $item->writer['name'] ?? null, 'avatar');
-
-                    // Salva dados SEO 
-                    $item->seo()->updateOrCreate(
-                        ['seoable_type' => get_class($this->model), 'seoable_id' => $item->id],
-                        $this->seoInputs($request)
-                    );
-                }
+                // Salva as imagens na pasta e no banco de dados
+                $this->addMedia('images', $item, $item->title, 'images');
             });
-
-            $this->model->fixTree();
-
-            Artisan::call('route:cache');
 
         return $this->redirectRoute($request, $id, false, $data);
     }
@@ -181,21 +123,8 @@ class DestinationsController extends Controller
     {
         $id = explode(',', filter_var($id, FILTER_SANITIZE_STRING));
 
-        $this->authorize('destinations');
-
         $this->model->destroy($id);
 
-        $this->model->fixTree();
-
-        Artisan::call('route:cache');
-
         return back()->withSuccess(config('app.admin.messages.success'));
-    }
-
-    public function extractIdPagesOfPermissionsPage(array $permissions)
-    {
-        return collect(array_map(function ($value) {
-            return trim(last(explode('_', $value)));
-        }, $permissions));
     }
 }

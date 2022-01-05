@@ -2,17 +2,20 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Kalnoy\Nestedset\NodeTrait;
 use Spatie\Sluggable\SlugOptions;
 use App\Supports\Models\MediaModel;
-use App\Supports\Traits\HasSeoTrait;
 use Laracasts\Presenter\PresentableTrait;
 use App\Supports\Traits\QueryCachebleTrait;
 
 class Destination extends MediaModel
 {
-    use QueryCachebleTrait, PresentableTrait, HasSlug, HasSeoTrait, NodeTrait;
+    use QueryCachebleTrait, Searchable, PresentableTrait, HasSlug;
+    use NodeTrait {
+        NodeTrait::usesSoftDelete insteadof Searchable;
+    }
 
     public $cacheFor = 3600; // 1 hour
 
@@ -26,37 +29,33 @@ class Destination extends MediaModel
      * @var array
      */
     protected $fillable = [
-        'user_id',
-        'slug',
-        'title',
-        'publish',
+        'parent_id', 
+        'slug', 
+        'title', 
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the indexable data array for the model.
      *
-     * @var array
+     * @return array
      */
-    protected $casts = [
-        'publish' => 'boolean',
-    ];
+    public function toSearchableArray()
+    {
+        $array['id'] = $this->id;
+        $array['title'] = $this->title;
+        //$array['body'] = $this->body;
+
+        return $array;
+    }
 
     /**
      * Get the options for generating the slug.
      */
     public function getSlugOptions(): SlugOptions
     {
-        $slugOptions = SlugOptions::create()
+        return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
-
-            if((bool) !strlen($this->getAttribute('title')) && (bool) !strlen($this->getAttribute('slug'))) {
-                $slugOptions->doNotGenerateSlugsOnCreate()->doNotGenerateSlugsOnUpdate();
-            } else {
-                $slugOptions->doNotGenerateSlugsOnUpdate();
-            }
-
-            return $slugOptions;
     }
 
     /**
@@ -68,21 +67,11 @@ class Destination extends MediaModel
     }
 
     /**
-     * Get the all posts.
+     * Get all of the posts that are assigned this city.
      */
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->morphedByMany(Post::class, 'citable');
     }
 
-    /**
-     * Scope a query remove specific id.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeExcept($query, $page = null)
-    {
-        return $query->where('id', '<>', $page);
-    }
 }

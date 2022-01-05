@@ -84,3 +84,31 @@ a {
 hr {
     border-top: 1px solid $border-color;
 }
+
+.select2-dropdown,
+.select2-container--default .select2-selection--multiple,
+.select2-container--default .select2-selection--single,
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: $border-color !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice,
+.select2-container--default .select2-selection--single .select2-selection__choice {
+    border-color: lighten($primary, 38%) !important;
+    background-color: lighten($primary, 42%) !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove,
+.select2-container--default .select2-selection--single .select2-selection__choice__remove {
+    border-color: lighten($primary, 38%) !important;
+    > * {
+        position: relative;
+        top: -2px;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: $white !important;
+    }
+}

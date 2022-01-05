@@ -26,6 +26,7 @@ import './vendor/banners';
 import './vendor/highlights';
 import './vendor/related';
 import './vendor/image-focus/index.ts';
+import './vendor/select';
 
 import './vendor/utils';
 import '../../../supports/assets/js/vendor/combo-box-city';

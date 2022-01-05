@@ -122,6 +122,14 @@ class Post extends MediaModel
     }
 
     /**
+     * Get all of the destinations for the record.
+     */
+    public function destinations()
+    {
+        return $this->morphToMany(Destination::class, 'destinable');
+    }
+
+    /**
      * Get the comments.
      */
     public function comments()
