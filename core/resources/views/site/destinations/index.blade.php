@@ -7,23 +7,13 @@
     <div class="container">
         <div class="row">
             <div class="order-1 col-12 order-md-0 col-md d-flex justify-content-center justify-content-md-start">
-                <h1>
-                    Destinos
-                    @if(isset($category))
-                    <span class="font-weight-lighter">&bull; {{ $category->title }}</span>
-                    @endif
-                </h1>
+                <h1>Destinos</h1>
             </div>
             <div class="col-12 order-0 order-md-1 col-md d-flex align-items-center justify-content-md-end justify-content-center">
                 <nav aria-label="breadcrumb">
                     <ol class="p-0 mb-0 mb-3 bg-transparent breadcrumb justify-content-center justify-content-md-end mb-md-0">
                         <li class="breadcrumb-item"><a href="/">Capa</a></li>
-                        @if(isset($category))
-                        <li class="breadcrumb-item"><a href="{{ $page->present()->url }}">{{ $page->title }}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $category->title }}</li>
-                        @else
                         <li class="breadcrumb-item active">Destinos</li>
-                        @endif
                     </ol>
                 </nav>
             </div>
@@ -54,7 +44,7 @@
                                                 ['class' => 'lazy']
                                             )
                                         !!}
-                                        <a href="{{ $item->present()->url }}" title="{{ $item->title }}" class="card-img-overlay {{ !$item->hasMedia($item->mediaCollection) ? 'border' : null }}">
+                                        <a href="{{ $item->present()->url }}" title="{{ $item->title }}" class="card-img-overlay p-3 {{ !$item->hasMedia($item->mediaCollection) ? 'border' : null }}">
                                             <h1 class="card-title title-18">{{ $item->title }}</h1>
                                         </a>
                                     </article>

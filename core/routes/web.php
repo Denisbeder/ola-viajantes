@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', ['uses' => 'Site\HomeController@index']);
 
 Route::get('/destinos', ['uses' => 'Site\DestinationsController@index']);
+Route::get('/destinos/{destination}', ['uses' => 'Site\DestinationsController@posts']);
 
 Route::get('/ultimas', ['uses' => 'Site\LatestRecordsController@index']);
 

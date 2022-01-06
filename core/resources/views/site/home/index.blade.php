@@ -253,4 +253,44 @@
             @endforeach
         </div>
     </div>
+
+    <div class="mt-5 container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <div class="box-title">Top destinos</div>
+                <small class="text-muted mb-4 d-block">Veja alguns dos destinos mais populares entre os viajantes</small>
+            </div>
+
+            <div class="d-flex">
+                <a href="/destinos">Ver todos os destinos</a>
+            </div>
+        </div>
+        
+        <div class="row">
+            @foreach ([1,2,3,4,5,6,7,8] as $postId)      
+                @foreach (${'postsP'.$postId} as $item)
+                <div class="col-2">
+                    <article class="card card-post d-flex mb-4">
+                    {!!
+                        $item->present()->imgFirst(
+                            $item->mediaCollection,
+                            [
+                                'width' => '198', 
+                                'height' => '198', 
+                                'fit' => 'crop', 
+                                'class' => 'img-fluid',
+                            ],
+                            null,
+                            null
+                        )
+                    !!}
+                    <a href="{{ $item->present()->url }}" title="{{ $item->title }}" class="card-img-overlay p-3 {{ !$item->hasMedia($item->mediaCollection) ? 'border' : null }}">
+                        <h1 class="card-title title-16 font-weight-normal">{{ $item->title_short ?? $item->title }}</h1>
+                    </a>
+                </article>
+                </div>
+                @endforeach
+            @endforeach
+        </div>
+    </div>
 @endsection
