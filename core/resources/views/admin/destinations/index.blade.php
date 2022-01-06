@@ -31,12 +31,12 @@
 @if($records->isNotEmpty())
 <div class="bgc-white p-20 bd bdrs-3">
     @include('admin.destinations._table')
-    <div class="pT-20">
+    {{-- <div class="pT-20">
         <div class="row">
             <div class="col d-flex align-items-center">Total de registros {{ $records->total() }}</div>
             <div class="col d-flex align-items-center justify-content-end">{!! $records->links() !!}</div>
         </div>    
-    </div>
+    </div> --}}
 </div>
 @else
 @include('admin._index-empty')

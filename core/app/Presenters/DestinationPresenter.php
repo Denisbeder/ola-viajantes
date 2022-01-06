@@ -12,6 +12,7 @@ class DestinationPresenter extends Presenter
 
     public function url()
     {
-        return '/' . $this->slug;
+        $prefix = request()->segment(1);
+        return '/' . $prefix . '/' . $this->slug;
     }
 }

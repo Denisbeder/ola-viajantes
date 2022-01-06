@@ -3,8 +3,9 @@ $nodes = $records->toTree();
 
 $tree = function ($datas, $prefix = false) use (&$tree) {
     $template = '';
-    foreach ($datas as $data) {
-    $template .= '<div class="card mt-4 card-listings">';
+    foreach ($datas as $k => $data) {
+        $marginTop = $data->isRoot() ? $k == 0 ? '' : 'mt-5' : 'mt-4';
+        $template .= '<div class="card '.$marginTop.' card-listings">';
         //$template .= $prefix ? '<div style="width: 20px; height: 20px;"></div>' : null;
         $template .= '<div class="card-header bg-light border-bottom-0 d-flex align-items-center justify-content-between">';
             $template .= '<div>';

@@ -25,7 +25,7 @@ class DestinationsController extends Controller
      */
     public function index()
     {
-        $records = $this->model->with('media')->withDepth()->latest()->paginate();
+        $records = $this->model->with('media')->withDepth()->latest()->get();
         return view('admin.destinations.index', compact('records'));
     }
 

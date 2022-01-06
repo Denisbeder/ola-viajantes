@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', ['uses' => 'Site\HomeController@index']);
 
+Route::get('/destinos', ['uses' => 'Site\DestinationsController@index']);
+
 Route::get('/ultimas', ['uses' => 'Site\LatestRecordsController@index']);
 
 Route::get('/busca', ['uses' => 'Site\SearchController@index'])->name('search');
