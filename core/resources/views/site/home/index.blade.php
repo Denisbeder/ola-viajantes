@@ -235,7 +235,7 @@
                             $item->mediaCollection,
                             [
                                 'width' => '424', 
-                                'height' => '210', 
+                                'height' => '260', 
                                 'fit' => 'crop', 
                                 'class' => 'img-fluid',
                             ],
@@ -269,7 +269,7 @@
         <div class="row">
             @foreach ([1,2,3,4,5,6,7,8] as $postId)      
                 @foreach (${'postsP'.$postId} as $item)
-                <div class="col-2">
+                <div class="col-3">
                     <article class="card card-post d-flex mb-4">
                     {!!
                         $item->present()->imgFirst(

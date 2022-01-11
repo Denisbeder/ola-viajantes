@@ -30,15 +30,15 @@ class HomeController extends Controller
     public function index()
     {
         $posts = $this->getPosts();
-        $medias = $this->getMedias();
-        $adverts = $this->getAdverts();
+        //$medias = $this->getMedias();
+        //$adverts = $this->getAdverts();
         $latest = $this->getLatest();
 
         $seo = $this->seoSetDescription(optional(app('settingService')->get('seo'))->get('description'))
             ->seoSetKeywords(optional(app('settingService')->get('seo'))->get('keywords'))
             ->seoForIndexPage();
 
-        return view('site.home.index')->with($posts)->with(compact('latest', 'medias', 'adverts', 'seo'));
+        return view('site.home.index')->with($posts)->with(compact('latest', 'seo'));
     }
 
     private function getLatest()
@@ -95,16 +95,6 @@ class HomeController extends Controller
             ['position' => 6, 'limit' => 1,],
             ['position' => 7, 'limit' => 1,],
             ['position' => 8, 'limit' => 1,],
-            ['position' => 9, 'limit' => 1,],
-            ['position' => 10, 'limit' => 1,],
-            ['position' => 11, 'limit' => 1,],
-            ['position' => 12, 'limit' => 1,],
-            ['position' => 13, 'limit' => 1,],
-            ['position' => 14, 'limit' => 1,],
-            ['position' => 15, 'limit' => 1,],
-            ['position' => 16, 'limit' => 1,],
-            ['position' => 17, 'limit' => 1,],
-            ['position' => 18, 'limit' => 1,],
         ];
 
         $datas = $this->getDatas($configs);
