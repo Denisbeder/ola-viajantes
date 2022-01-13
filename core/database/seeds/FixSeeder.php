@@ -67,44 +67,64 @@ class FixSeeder extends Seeder
         $this->command->info('Criando Menus...');
         DB::table('menus')->delete();
         DB::unprepared("ALTER TABLE menus AUTO_INCREMENT = 1;");
-        Menu::create(['header' => [
-            [
-                'title' => 'Home',
-                'type' => 'static',
-                'url' => '/',
-            ],    
-            [
-                'title' => 'Promoções',
-                'type' => 'static',
-                'url' => '/promocoes',
-            ],       
-            [
-                'title' => 'Notícias',
-                'type' => 'dinamic',
-                'page' => 1,
-                'submenu' => 'page_categories',
+        Menu::create([
+            'header' => [
+                [
+                    'title' => 'Home',
+                    'type' => 'static',
+                    'url' => '/',
+                ],    
+                [
+                    'title' => 'Promoções',
+                    'type' => 'static',
+                    'url' => '/promocoes',
+                ],       
+                [
+                    'title' => 'Notícias',
+                    'type' => 'dinamic',
+                    'page' => 1,
+                    'submenu' => 'page_categories',
+                ],
+                [
+                    'title' => 'Guia de Destinos',
+                    'type' => 'static',
+                    'url' => '/destinos',
+                ], 
+                [
+                    'title' => 'Hotéis',
+                    'type' => 'static',
+                    'url' => '/hoteis',
+                ], 
+                [
+                    'title' => 'Passagens Aéreas',
+                    'type' => 'static',
+                    'url' => '/passagens-aereas',
+                ], 
+                [
+                    'title' => 'Contato',
+                    'type' => 'static',
+                    'url' => '/contato',
+                ], 
             ],
-            [
-                'title' => 'Guia de Destinos',
-                'type' => 'static',
-                'url' => '/destinos',
-            ], 
-            [
-                'title' => 'Hotéis',
-                'type' => 'static',
-                'url' => '/hoteis',
-            ], 
-            [
-                'title' => 'Passagens Aéreas',
-                'type' => 'static',
-                'url' => '/passagens-aereas',
-            ], 
-            [
-                'title' => 'Contato',
-                'type' => 'static',
-                'url' => '/contato',
-            ], 
-        ]]);
+            'social_header' => [
+                [
+                    'icon' => 'lni lni-whatsapp',
+                    'url' => '#',
+                ],  
+                [
+                    'icon' => '<i class="lni lni-facebook-original"></i>',
+                    'url' => '#',
+                ],
+                [
+                    'icon' => '<i class="lni lni-instagram-original"></i>',
+                    'url' => '#',
+                ],
+                [
+                    'icon' => '<i class="lni lni-youtube"></i>',
+                    'url' => '#',
+                ],
+            ]
+        ]);
         
         $this->command->info('Criando Destinos...');
         DB::table('destinations')->delete();
