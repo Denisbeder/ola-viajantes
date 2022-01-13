@@ -7,6 +7,7 @@ use App\Advert;
 use App\Gallery;
 use App\Highlight;
 use App\Supports\Traits\SeoGenerateTrait;
+use App\Supports\Services\MostViewedService;
 use App\Supports\Services\LatestAllRecordsService;
 
 class HomeController extends Controller
@@ -29,6 +30,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $mostViews = (new MostViewedService)->get(8, ['destinations', 'destinations.media']);
+        $mostViewsDestinations = $mostViews->pluck('destinations')->flatten();
+
         $posts = $this->getPosts();
         //$medias = $this->getMedias();
         //$adverts = $this->getAdverts();
@@ -38,12 +42,12 @@ class HomeController extends Controller
             ->seoSetKeywords(optional(app('settingService')->get('seo'))->get('keywords'))
             ->seoForIndexPage();
 
-        return view('site.home.index')->with($posts)->with(compact('latest', 'seo'));
+        return view('site.home.index')->with($posts)->with(compact('latest', 'seo', 'mostViews', 'mostViewsDestinations'));
     }
 
     private function getLatest()
     {
-        return (new LatestAllRecordsService)->excludeIds($this->excludeIds)->limit(18)->get()->take(18);
+        return (new LatestAllRecordsService)->excludeIds($this->excludeIds)->limit(3)->get()->take(3);
     }
 
     private function getGalleries()

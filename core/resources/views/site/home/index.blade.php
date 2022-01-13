@@ -226,30 +226,28 @@
                 <button type="button" id="mostviews-carousel-next" class="btn rounded-pill bg-light text-secondary p-0 d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;"><i class="lni lni-arrow-right"></i></button>
             </div>
         </div>
-        <div id="mostviews-carousel" class="owl-carousel">
-            @foreach ([1,2,3,4,5,6,7,8] as $postId)      
-                @foreach (${'postsP'.$postId} as $item)
-                <article class="card card-post d-flex">
-                    {!!
-                        $item->present()->imgFirst(
-                            $item->mediaCollection,
-                            [
-                                'width' => '424', 
-                                'height' => '260', 
-                                'fit' => 'crop', 
-                                'class' => 'img-fluid',
-                            ],
-                            null,
-                            null
-                        )
-                    !!}
-                    <a href="{{ $item->present()->url }}" title="{{ $item->title }}" class="card-img-overlay {{ !$item->hasMedia($item->mediaCollection) ? 'border' : null }}">
-                        @if((bool) strlen($subject = $item->present()->subject))<p class="card-subject">{{ $subject }}</p>@endif
-                        @if($item->getTable() === "videos")<span class="card-subject-video">ASSISTA</span>@endif
-                        <h1 class="card-title title-16 font-weight-normal">{{ $item->title_short ?? $item->title }}</h1>
-                    </a>
-                </article>
-                @endforeach
+        <div id="mostviews-carousel" class="owl-carousel">  
+            @foreach ($mostViews as $item)
+            <article class="card card-post d-flex">
+                {!!
+                    $item->present()->imgFirst(
+                        $item->mediaCollection,
+                        [
+                            'width' => '424', 
+                            'height' => '260', 
+                            'fit' => 'crop', 
+                            'class' => 'img-fluid',
+                        ],
+                        null,
+                        null
+                    )
+                !!}
+                <a href="{{ $item->present()->url }}" title="{{ $item->title }}" class="card-img-overlay {{ !$item->hasMedia($item->mediaCollection) ? 'border' : null }}">
+                    @if((bool) strlen($subject = $item->present()->subject))<p class="card-subject">{{ $subject }}</p>@endif
+                    @if($item->getTable() === "videos")<span class="card-subject-video">ASSISTA</span>@endif
+                    <h1 class="card-title title-16 font-weight-normal">{{ $item->title_short ?? $item->title }}</h1>
+                </a>
+            </article>
             @endforeach
         </div>
     </div>
@@ -266,30 +264,28 @@
             </div>
         </div>
         
-        <div class="row">
-            @foreach ([1,2,3,4,5,6,7,8] as $postId)      
-                @foreach (${'postsP'.$postId} as $item)
-                <div class="col-3">
-                    <article class="card card-post d-flex mb-4">
+        <div class="row">    
+            @foreach ($mostViewsDestinations as $item)
+            <div class="col-3">
+                <article class="card card-post mb-5" style="height: 312px;">
                     {!!
                         $item->present()->imgFirst(
                             $item->mediaCollection,
                             [
-                                'width' => '198', 
-                                'height' => '198', 
+                                'width' => 312, 
+                                'height' => 312, 
                                 'fit' => 'crop', 
                                 'class' => 'img-fluid',
                             ],
                             null,
-                            null
+                            ['class' => 'lazy']
                         )
                     !!}
-                    <a href="{{ $item->present()->url }}" title="{{ $item->title }}" class="card-img-overlay p-3 {{ !$item->hasMedia($item->mediaCollection) ? 'border' : null }}">
-                        <h1 class="card-title title-16 font-weight-normal">{{ $item->title_short ?? $item->title }}</h1>
+                    <a href="{{ $item->present()->url }}" title="{{ $item->title }}" class="card-img-overlay p-3 {{ !$item->hasMedia($item->mediaCollection) ? 'border bg-light text-center' : null }}">
+                        <h1 class="card-title title-18">{{ $item->title }}</h1>
                     </a>
                 </article>
-                </div>
-                @endforeach
+            </div>
             @endforeach
         </div>
     </div>

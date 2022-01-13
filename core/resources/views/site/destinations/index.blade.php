@@ -44,7 +44,7 @@
                                                 ['class' => 'lazy']
                                             )
                                         !!}
-                                        <a href="{{ $item->present()->url }}" title="{{ $item->title }}" class="card-img-overlay p-3 {{ !$item->hasMedia($item->mediaCollection) ? 'border' : null }}">
+                                        <a href="{{ $item->present()->url }}" title="{{ $item->title }}" class="card-img-overlay p-3 {{ !$item->hasMedia($item->mediaCollection) ? 'border bg-light text-center' : null }}">
                                             <h1 class="card-title title-18">{{ $item->title }}</h1>
                                         </a>
                                     </article>

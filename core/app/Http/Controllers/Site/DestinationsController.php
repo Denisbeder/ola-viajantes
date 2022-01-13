@@ -21,15 +21,26 @@ class DestinationsController extends Controller
 
     public function posts($destination)
     {
-        $datas = Post::whereHas('destinations', function ($query) use ($destination) {
-            $query->where('slug', $destination);
-        })->scheduled()->paginate();
+        $perPage = 15;
+        $destinationSelected = Destination::with([
+            'posts' => function ($query) {
+                $query->scheduled()->limit(100);
+            }, 
+            'descendants.posts' => function ($query) {
+                $query->scheduled()->limit(100);
+            }
+        ])
+        ->where('slug', $destination)
+        ->first();
 
-        $destinationSelected = Destination::where('slug', $destination)->first();
+        $postsDescendants = $destinationSelected->descendants->pluck('posts')->flatten();
+        $posts = $destinationSelected->posts;
+        $postsMerge = $posts->merge($postsDescendants);
+
+        $datas = $postsMerge->paginate($perPage);
     
         $seo = $this->seoSetType('WebPage')->seoSetTitle('Destinos')->seoForIndexPage();
 
         return view('site.destinations.posts', compact('datas', 'destinationSelected', 'seo'));
     }
-
 }

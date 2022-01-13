@@ -71,7 +71,7 @@ class Destination extends MediaModel
      */
     public function posts()
     {
-        return $this->morphedByMany(Post::class, 'citable');
+        return $this->morphedByMany(Post::class, 'destinable');
     }
 
 }
