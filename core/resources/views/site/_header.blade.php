@@ -5,7 +5,7 @@
                 <i class="lni lni-menu"></i>
             </button>  
 
-            <a class="navbar-brand order-1" href="#" title="{{ config('app.site.name') }}">
+            <a class="navbar-brand order-1" href="/" title="{{ config('app.site.name') }}">
                 <img src="/assets/site/img/logo-color.png" class="logo" alt="{{ config('app.site.name') }}" />
             </a>                     
 

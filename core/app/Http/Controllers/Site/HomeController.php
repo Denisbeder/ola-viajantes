@@ -30,8 +30,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $mostViews = (new MostViewedService)->get(8, ['destinations', 'destinations.media']);
-        $mostViewsDestinations = $mostViews->pluck('destinations')->flatten();
+        $mostViews = (new MostViewedService)->get(16, ['destinations', 'destinations.media']);
+        $mostViewsDestinations = $mostViews->pluck('destinations')->flatten()->unique('id')->take(8);
 
         $posts = $this->getPosts();
         //$medias = $this->getMedias();

@@ -24,10 +24,10 @@ class DestinationsController extends Controller
         $perPage = 15;
         $destinationSelected = Destination::with([
             'posts' => function ($query) {
-                $query->scheduled()->limit(100);
+                $query->scheduled()->limit(200);
             }, 
             'descendants.posts' => function ($query) {
-                $query->scheduled()->limit(100);
+                $query->scheduled()->limit(200);
             }
         ])
         ->where('slug', $destination)
