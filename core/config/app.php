@@ -267,6 +267,7 @@ return [
             ['label' => 'Relacionados', 'route' => 'related'],
             ['label' => 'Conectar Facebook', 'route' => 'facebookconnect'],
             ['label' => 'Instagram Posts', 'route' => 'instagramposts'],
+            ['label' => 'Destinos', 'route' => 'destinations'],
         ],
         'managers' => [
             [
