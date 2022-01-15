@@ -46,48 +46,56 @@ class PostsSeeder extends Seeder
 
       private function crawlerDatas($pageId)
       {
+            /* $url = 'https://www.panrotas.com.br/destinos/parques-tematicos/2021/12/animais-reabilitados-pelo-seaworld-sao-transferidos-para-aquario_186444.html';
+            $ql = QueryList::get($url);
+            $bodyHtml = $ql->find('.txt-body')->html();
+            $bodyHtml = str_replace(["\r", "\n"], '', $bodyHtml);
+            $bodyHtml = '<div>' . $bodyHtml . '</div>';
+            $bodyHtml2 = preg_replace('/<figure[^>]*>.+?\X+?(<img[^>]*>).*?\X+?<\/figure>/', '<figure class="show-image show-image--stretched">$1</figure>', $bodyHtml);
+            dd($bodyHtml, $bodyHtml2);
+            $body = (new EditorJsService)->outputToJson($bodyHtml);
+
+            dd($bodyHtml, $body); */
+            
             $this->command->info('Buscando Posts...');
 
-            $totalPages = 5;
-            $sourcePage = '1';
-            $sourceBaseUrl = 'https://agenciabrasil.ebc.com.br';
+            $sourceBaseUrl = 'https://www.panrotas.com.br';
             $bagUrls = collect([]);
-            $bagPosts = collect([]);
-            
-            for ($sourcePage; $sourcePage <= $totalPages; $sourcePage++) {
-                  $sourceUrl = $sourceBaseUrl . '/geral?page=' . $sourcePage;
+            $bagPosts = collect([]);            
+            $sourceUrl = $sourceBaseUrl . '/service-news/more-news/models/GET-news.asp?qtd=50&channels=88&category=100%2C97%2C99%2C3%2C98%2C5%2C94%2C96&orderBy=latest';
 
-                   $ql = QueryList::get($sourceUrl);
+            $ql = QueryList::get($sourceUrl, null, [
+                  'header' => [
+                        'Referer' => 'https://www.panrotas.com.br/noticias/destinos',
+                        'Accept'     => 'application/json',
+                  ]
+            ]);
 
-                  $ql->find('.view-content .post-item-desc a:nth-child(2)')->attrs('href')->map(function ($item) use ($sourceBaseUrl, $bagUrls) {
-                        $bagUrls->push($sourceBaseUrl . $item);
-                  });
-            }
+            $datas = json_decode($ql->getHtml(), true);
+            $bagUrls = collect($datas['news']);
 
-            $bagUrls->filter(function ($url) {
-                  return preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $url);
-            })->each(function ($url) use ($bagPosts, $pageId) {
+            $bagUrls->each(function ($item) use ($bagPosts, $pageId, $sourceBaseUrl) {
+                  $url = $sourceBaseUrl . $item['url'];
                   $ql = QueryList::get($url);
 
-                  $img = $ql->find('.post-image img')->attr('data-echo');
-                  $title = $ql->find('h2.display-6')->text();
-                  $description = $ql->find('h3.display-8')->text();
-                  $bodyHtml = $ql->find('.post-item-wrap')->html();
+                  $img = $ql->find('.thumb img')->attr('src');
+                  $title = $item['title'];
+                  $bodyHtml = $ql->find('.txt-body')->html();
+                  $bodyHtml = str_replace(["\r", "\n"], '', $bodyHtml);
+                  $bodyHtml = '<div>' . $bodyHtml . '</div>';
+                  $bodyHtml = preg_replace('/<figure[^>]*>.+?\X+?(<img[^>]*>).*?\X+?<\/figure>/', '<figure class="show-image show-image--stretched">$1</figure>', $bodyHtml);
                   $body = (new EditorJsService)->outputToJson($bodyHtml);
-                  
-                  preg_match('/\d{2}\/\d{2}\/\d{4}/', $ql->find('h4.alt-font.small')->text(), $output_created_at);
-                  $created_at = Carbon::createFromFormat('d/m/Y', trim(head($output_created_at)));
+                  $createdAt = Carbon::createFromFormat('d/m/Y H:i:s', trim($item['publishDate']));
 
                   $data = [
                         'title' => $title,
-                        'description' => $description,
                         'body' => $body,
-                        'published_at' => $created_at,
-                        'source' => 'Agência Brasil',
+                        'published_at' => $createdAt,
+                        'source' => 'PANROTAS',
                         'publish' => 1,
                         'user_id' => 1,
                         'page_id' => $pageId,
-                        'cover_inside' => 1,
+                        'cover_inside' => 0,
                         'img' => $img,
                   ];
 
