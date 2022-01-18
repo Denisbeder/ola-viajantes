@@ -282,7 +282,7 @@ services:
     command: certonly --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email duek.digital@gmail.com --agree-tos --no-eff-email -d olaviajante.com.br -d www.olaviajante.com.br
     volumes:
       - ${NGINX_SSL_PATH}:/etc/letsencrypt
-      - ./certbot/logs/:/var/logs/letsencrypt
+      - ./certbot/logs/:/var/log/letsencrypt
       - ./certbot/data/:/usr/share/nginx/html/letsencrypt
     networks:
       - frontend
