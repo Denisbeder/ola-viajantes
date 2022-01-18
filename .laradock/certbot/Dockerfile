@@ -11,8 +11,8 @@ ARG FILE=/etc/resolv.conf
 
 RUN set -eux; \ 
     if [ -f "$FILE" ]; then \
-        echo "$FILE exists." \
+        echo "$FILE exists."; \
     else \
-        echo "$FILE does not exist." \
+        echo "$FILE does not exist."; \
     fi
 #ENTRYPOINT bash -c "bash /root/certbot/run-certbot.sh && sleep infinity"
