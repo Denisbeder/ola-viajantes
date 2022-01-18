@@ -9,10 +9,10 @@ CMD certonly dry-run --webroot --webroot-path={$WEBROOT_PATH}/letsencrypt \
 
 ARG FILE=/etc/resolv.conf
 
-RUN set -eux; \if test -f "$FILE"; then \
-    echo "$FILE exists." \
-else \
-    echo "$FILE does not exist." \
-fi
-
+RUN set -eux; \ 
+    f [ -f "$FILE" ]; then \
+        echo "$FILE exists." \
+    else  \
+        echo "$FILE does not exist." \
+    fi
 #ENTRYPOINT bash -c "bash /root/certbot/run-certbot.sh && sleep infinity"
