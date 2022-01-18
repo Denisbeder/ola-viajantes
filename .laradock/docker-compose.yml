@@ -275,6 +275,18 @@ services:
     networks:
       - backend
 
+  ### Certbot #########################################
+  certbot:
+    container_name: cerbot_${PHP_VERSION}
+    image: certbot/certbot:latest
+    command: certonly --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email duek.digital@gmail.com --agree-tos --no-eff-email -d olaviajante.com.br -d www.olaviajante.com.br
+    volumes:
+      - ${NGINX_SSL_PATH}:/etc/letsencrypt
+      - ./certbot/logs/:/var/logs/letsencrypt
+      - ./certbot/data/:/usr/share/nginx/html/letsencrypt
+    networks:
+      - frontend
+  
   ### NGINX Server #########################################
   nginx:
     container_name: nginx_${PHP_VERSION}
@@ -292,6 +304,7 @@ services:
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
       - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
       - ${NGINX_SSL_PATH}:/etc/nginx/ssl
+      - ./certbot/data/:/usr/share/nginx/html/letsencrypt
     ports:
       - "${NGINX_HOST_HTTP_PORT}:80"
       - "${NGINX_HOST_HTTPS_PORT}:443"
@@ -338,20 +351,6 @@ services:
       - "${REDIS_PORT}:6379"
     networks:
       - backend
-
-  ### Certbot #########################################
-#  certbot:
-#    container_name: cerbot_${PHP_VERSION}
-#    build:
-#      context: ./certbot
-#    volumes:
-#      - ./data/certbot/certs/:/var/certs
-#      - ./certbot/letsencrypt/:/var/www/letsencrypt
-#    environment:
-#      - CN="olaviajantes.com.br"
-#      - EMAIL="duek.digital@gmail.com"
-#    networks:
-#      - frontend
 
   ### Docker-in-Docker ################################################
   docker-in-docker:
