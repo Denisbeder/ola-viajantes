@@ -281,11 +281,11 @@ services:
     build:
       context: ./certbot
       args:
-        - WEBROOT_PATH={$APP_CODE_PATH_CONTAINER}
+        - WEBROOT_PATH=${APP_CODE_PATH_CONTAINER}
     volumes:
       - ${NGINX_SSL_PATH}:/etc/letsencrypt
       - ./certbot/logs/:/var/log/letsencrypt
-      - ./certbot/data/:{$APP_CODE_PATH_CONTAINER}/letsencrypt
+      - ./certbot/data/:${APP_CODE_PATH_CONTAINER}/letsencrypt
     networks:
       - frontend
   
