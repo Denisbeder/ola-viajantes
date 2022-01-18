@@ -10,7 +10,7 @@ CMD certonly dry-run --webroot --webroot-path={$WEBROOT_PATH}/letsencrypt \
 ARG FILE=/etc/resolv.conf
 
 RUN set -eux; \ 
-    f [ -f "$FILE" ]; then \
+    if [[ -f "$FILE" ]]; then \
         echo "$FILE exists." \
     else  \
         echo "$FILE does not exist." \
