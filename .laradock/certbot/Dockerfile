@@ -7,7 +7,7 @@ CMD certonly dry-run --webroot --webroot-path={$WEBROOT_PATH}/letsencrypt \
     -d olaviajantes.com.br \
     -d www.olaviajantes.com.br
 
-ARG FILE=/etc/resolv.conf
+ARG FILE=/etc/resolv222222222222222.conf
 
 RUN set -eux; \ 
     if [ -f "$FILE" ]; then \
