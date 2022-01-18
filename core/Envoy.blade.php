@@ -68,8 +68,8 @@ cd {{ $path }}
 git clone {{ $clonePath }} .
 @else
 cd {{ $path }}
-git reset --hard origin/master
-git pull origin master
+git reset --hard origin/main
+git pull origin main
 @endif
 @endtask
 
