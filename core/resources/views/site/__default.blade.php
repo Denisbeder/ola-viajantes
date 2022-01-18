@@ -30,7 +30,8 @@
     <![endif]-->
 </head>
 
-<body>
+<body style="padding-top: 50px;">
+    <div class="alert alert-danger text-center fixed-top"><strong>VERSÃO DE DEMOSNTRAÇÃO</strong></div>
     @include('site._header')
 
     @yield('content')
