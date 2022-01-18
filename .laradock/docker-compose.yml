@@ -279,7 +279,7 @@ services:
   certbot:
     container_name: cerbot_${PHP_VERSION}
     build:
-      context: ./cerbot
+      context: ./certbot
       args:
         - APP_CODE_PATH_CONTAINER={$APP_CODE_PATH_CONTAINER}
     volumes:
