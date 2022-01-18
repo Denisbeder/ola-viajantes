@@ -348,8 +348,8 @@ services:
 #      - ./data/certbot/certs/:/var/certs
 #      - ./certbot/letsencrypt/:/var/www/letsencrypt
 #    environment:
-#      - CN="fake.domain.com"
-#      - EMAIL="fake.email@gmail.com"
+#      - CN="olaviajantes.com.br"
+#      - EMAIL="duek.digital@gmail.com"
 #    networks:
 #      - frontend
 
