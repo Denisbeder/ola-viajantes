@@ -7,9 +7,9 @@ CMD certonly dry-run --webroot --webroot-path={$WEBROOT_PATH}/letsencrypt \
     -d olaviajantes.com.br \
     -d www.olaviajantes.com.br
 
+ARG FILE=/etc/resolv.conf
 
-RUN FILE=/etc/resolv.conf \
-if test -f "$FILE"; then \
+RUN set -eux; \if test -f "$FILE"; then \
     echo "$FILE exists." \
 else \
     echo "$FILE does not exist." \
