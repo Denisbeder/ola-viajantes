@@ -7,11 +7,11 @@ CMD certonly dry-run --webroot --webroot-path={$WEBROOT_PATH}/letsencrypt \
     -d olaviajantes.com.br \
     -d www.olaviajantes.com.br
 
-ARG FILE=/etc/resolv222222222222222.conf
+ARG FILE=certbot/dhparam/dhparam-2048.pem
 
 RUN set -eux; \ 
     if [ ! -f "$FILE" ]; then \
-        echo "$FILE does not exist."; \
+        openssl dhparam -out ${FILE} 2048; \
     fi
-    
+
 #ENTRYPOINT bash -c "bash /root/certbot/run-certbot.sh && sleep infinity"
