@@ -278,12 +278,14 @@ services:
   ### Certbot #########################################
   certbot:
     container_name: cerbot_${PHP_VERSION}
-    image: certbot/certbot:latest
-    command: certonly --dry-run --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email duek.digital@gmail.com --agree-tos --no-eff-email -d olaviajantes.com.br -d www.olaviajantes.com.br
+    build:
+      context: ./cerbot
+      args:
+        - APP_CODE_PATH_CONTAINER={$APP_CODE_PATH_CONTAINER}
     volumes:
       - ${NGINX_SSL_PATH}:/etc/letsencrypt
       - ./certbot/logs/:/var/log/letsencrypt
-      - ./certbot/data/:/usr/share/nginx/html/letsencrypt
+      - ./certbot/data/:{$APP_CODE_PATH_CONTAINER}/letsencrypt
     networks:
       - frontend
   
@@ -304,7 +306,7 @@ services:
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
       - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
       - ${NGINX_SSL_PATH}:/etc/nginx/ssl
-      - ./certbot/data/:/usr/share/nginx/html/letsencrypt
+      - ./certbot/data/:{$APP_CODE_PATH_CONTAINER}/letsencrypt
       - ./certbot/dhparam:/etc/nginx/dhparam
     ports:
       - "${NGINX_HOST_HTTP_PORT}:80"
