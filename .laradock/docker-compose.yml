@@ -281,7 +281,7 @@ services:
     build:
       context: ./certbot
       args:
-        - APP_CODE_PATH_CONTAINER={$APP_CODE_PATH_CONTAINER}
+        - WEBROOT_PATH={$APP_CODE_PATH_CONTAINER}
     volumes:
       - ${NGINX_SSL_PATH}:/etc/letsencrypt
       - ./certbot/logs/:/var/log/letsencrypt
