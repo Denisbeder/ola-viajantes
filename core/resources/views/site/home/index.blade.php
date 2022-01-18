@@ -173,7 +173,7 @@
                                     {{ $item->title_short ?? $item->title }}
                                 </a>
                             </h2>
-                            <p class="card-text summary mt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit eius tenetur ipsam, et aliquid dolores, hic debitis veritatis molestiae natus possimus nesciunt earum saepe cumque praesentium ratione, sunt unde! Quod?</p>
+                            <p class="card-text summary mt-2 d-none d-md-block">{{ $item->present()->summary }}</p>
                         </div>
                     </article>
                     @endforeach
@@ -214,7 +214,7 @@
         </div>
     </div>
 
-    <div class="mt-5 position-relative container-fluid">
+    <div class="mt-5 position-relative container-fluid px-0 px-md-3">
         <div class="container d-flex justify-content-between align-items-center">
             <div>
                 <div class="box-title">Os mais visitados</div>
@@ -266,8 +266,8 @@
         
         <div class="row">    
             @foreach ($mostViewsDestinations as $item)
-            <div class="col-3">
-                <article class="card card-post mb-5" style="height: 312px;">
+            <div class="col-6 col-md-3">
+                <article class="card card-post mb-5" style="height: {{ !app('mobile-detect')->isMobile() ? '312px' : '200px' }}">
                     {!!
                         $item->present()->imgFirst(
                             $item->mediaCollection,

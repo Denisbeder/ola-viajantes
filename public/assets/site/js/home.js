@@ -171,7 +171,7 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _vendor_video__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendor/video */ \"./resources/views/site/assets/js/vendor/video/index.js\");\n //import './vendor/goto';//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvdmlld3Mvc2l0ZS9hc3NldHMvanMvaG9tZS5qcz82OTVhIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7Q0FDQSIsImZpbGUiOiIuL3Jlc291cmNlcy92aWV3cy9zaXRlL2Fzc2V0cy9qcy9ob21lLmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICcuL3ZlbmRvci92aWRlbyc7XHJcbi8vaW1wb3J0ICcuL3ZlbmRvci9nb3RvJztcclxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/views/site/assets/js/home.js\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _vendor_video__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendor/video */ \"./resources/views/site/assets/js/vendor/video/index.js\");\n //import './vendor/goto';//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvdmlld3Mvc2l0ZS9hc3NldHMvanMvaG9tZS5qcz82OTVhIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7Q0FDQSIsImZpbGUiOiIuL3Jlc291cmNlcy92aWV3cy9zaXRlL2Fzc2V0cy9qcy9ob21lLmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICcuL3ZlbmRvci92aWRlbyc7XG4vL2ltcG9ydCAnLi92ZW5kb3IvZ290byc7XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/views/site/assets/js/home.js\n");
 
 /***/ }),
 
