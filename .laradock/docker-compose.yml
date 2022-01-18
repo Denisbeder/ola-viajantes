@@ -279,7 +279,7 @@ services:
   certbot:
     container_name: cerbot_${PHP_VERSION}
     image: certbot/certbot:latest
-    command: certonly --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email duek.digital@gmail.com --agree-tos --no-eff-email -d olaviajante.com.br -d www.olaviajante.com.br
+    command: certonly --dry-run --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email duek.digital@gmail.com --agree-tos --no-eff-email -d olaviajante.com.br -d www.olaviajante.com.br
     volumes:
       - ${NGINX_SSL_PATH}:/etc/letsencrypt
       - ./certbot/logs/:/var/log/letsencrypt
