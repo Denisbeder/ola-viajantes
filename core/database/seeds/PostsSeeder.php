@@ -80,15 +80,20 @@ class PostsSeeder extends Seeder
 
                   $img = $ql->find('.thumb img')->attr('src');
                   $title = $item['title'];
+                  $description = $item['digest'];
+                  $hat = $item['category'];
                   $bodyHtml = $ql->find('.txt-body')->html();
                   $bodyHtml = str_replace(["\r", "\n"], '', $bodyHtml);
                   $bodyHtml = '<div>' . $bodyHtml . '</div>';
-                  $bodyHtml = preg_replace('/<figure[^>]*>.+?\X+?(<img[^>]*>).*?\X+?<\/figure>/', '<figure class="show-image show-image--stretched">$1</figure>', $bodyHtml);
+                  $bodyHtml
+                   = preg_replace('/<figure[^>]*>.+?\X+?(<img[^>]*>).*?\X+?<\/figure>/', '<figure class="show-image show-image--stretched">$1</figure>', $bodyHtml);
                   $body = (new EditorJsService)->outputToJson($bodyHtml);
                   $createdAt = Carbon::createFromFormat('d/m/Y H:i:s', trim($item['publishDate']));
 
                   $data = [
                         'title' => $title,
+                        'description' => $description,
+                        'hat' => $hat,
                         'body' => $body,
                         'published_at' => $createdAt,
                         'source' => 'PANROTAS',

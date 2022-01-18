@@ -53,7 +53,7 @@
                         @if((bool) strlen($subject = $item->present()->subject))<p class="card-subject">{{ $subject }}</p>@endif
                         @if($item->getTable() === "videos")<span class="card-subject-video">ASSISTA</span>@endif
                         <h1 class="card-title title-24">{{ $item->title_short ?? $item->title }}</h1>
-                        <p class="card-text summary mt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit eius tenetur ipsam, et aliquid dolores, hic debitis veritatis molestiae natus possimus nesciunt earum saepe cumque praesentium ratione, sunt unde! Quod?</p>
+                        <p class="card-text summary mt-2">{{ $item->present()->summary(150) }}</p>
                     </a>
                 </article>
                 @endforeach
@@ -79,7 +79,7 @@
                         @if((bool) strlen($subject = $item->present()->subject))<p class="card-subject">{{ $subject }}</p>@endif
                         @if($item->getTable() === "videos")<span class="card-subject-video">ASSISTA</span>@endif
                         <h1 class="card-title title-24">{{ $item->title_short ?? $item->title }}</h1>
-                        <p class="card-text summary mt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit eius tenetur ipsam, et aliquid dolores, hic debitis veritatis molestiae natus possimus nesciunt earum saepe cumque praesentium ratione, sunt unde! Quod?</p>
+                        <p class="card-text summary mt-2">{{ $item->present()->summary(150) }}</p>
                     </a>
                 </article>
                 @endforeach
