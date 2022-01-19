@@ -29,14 +29,14 @@
                         <div class="box-title mb-3">{{ $data->title }}</div>
                         <div class="row">
                             @foreach($data->descendants->sortBy('title') as $item)
-                                <div class="col-3">
-                                    <article class="card card-post mb-5" style="height: 198px;">
+                                <div class="col-6 col-md-3">
+                                    <article class="card card-post mb-5" style="height: {{ !app('mobile-detect')->isMobile() ? '208px' : '160px' }}">
                                         {!!
                                             $item->present()->imgFirst(
                                                 $item->mediaCollection,
                                                 [
-                                                    'width' => 198, 
-                                                    'height' => 198, 
+                                                    'width' => 208, 
+                                                    'height' => 208, 
                                                     'fit' => 'crop', 
                                                     'class' => 'img-fluid',
                                                 ],
