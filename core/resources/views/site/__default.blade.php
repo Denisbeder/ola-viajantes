@@ -31,7 +31,7 @@
 </head>
 
 <body style="padding-top: 74px;">
-    <div class="alert alert-danger text-center rounded-0 py-4 fixed-top"><strong><span class="d-none d-md-block">ESTA É UMA</span> VERSÃO DE DEMOSNTRAÇÃO</strong></div>
+    <div class="alert alert-danger text-center rounded-0 py-4 fixed-top"><strong><span class="d-none d-md-inline-block">ESTA É UMA</span> VERSÃO DE DEMOSNTRAÇÃO</strong></div>
     @include('site._header')
 
     @yield('content')
